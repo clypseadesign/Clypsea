@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Initialize the Resend client with your API key
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export const runtime = 'edge'; // Crucial for Cloudflare Pages
 
 export async function POST(req: Request) {
     try {
+        // Initialize the Resend client inside the handler so it doesn't crash the Next.js static build step
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
         const body = await req.json();
         const { name, email, company, service, budget, message } = body;
 
