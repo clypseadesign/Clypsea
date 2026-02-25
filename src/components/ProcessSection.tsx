@@ -25,7 +25,7 @@ export default function ProcessSection() {
                         >
                             How We <span className="text-accent block">Work</span>
                         </motion.h2>
-                        <p className="text-foreground/50 text-base leading-relaxed">A proven process for exceptional results.</p>
+                        <p className="text-foreground/70 text-base leading-relaxed max-w-xs">A proven process for exceptional results.</p>
                     </div>
                     {/* Steps */}
                     <div className="flex flex-col divide-y divide-white/6">
@@ -35,10 +35,10 @@ export default function ProcessSection() {
                                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1 }}
                                 className="flex items-start gap-8 py-10"
                             >
-                                <span className="text-5xl font-black font-heading text-accent/20 leading-none select-none w-16 flex-shrink-0">{s.num}</span>
+                                <span className="text-4xl font-black font-heading text-accent/30 leading-none select-none w-16 flex-shrink-0">{s.num}</span>
                                 <div className="space-y-2">
-                                    <h3 className="text-2xl font-black font-heading">{s.title}</h3>
-                                    <p className="text-foreground/60 text-base leading-relaxed max-w-md">{s.desc}</p>
+                                    <h3 className="text-xl font-black font-heading">{s.title}</h3>
+                                    <p className="text-foreground/75 text-base leading-relaxed max-w-sm">{s.desc}</p>
                                 </div>
                             </motion.div>
                         ))}

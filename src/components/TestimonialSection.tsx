@@ -18,12 +18,12 @@ function TestimonialCard({ t, i, large = false }: { t: typeof testimonials[0], i
         >
             <Quote className={`absolute top-5 left-5 text-white/5 group-hover:text-accent/10 transition-colors ${large ? 'w-14 h-14' : 'w-10 h-10'}`} />
             <div className={`relative z-10 flex flex-col gap-6 ${large ? 'pt-12' : 'pt-8'}`}>
-                <p className={`font-medium font-heading leading-relaxed ${large ? 'text-xl' : 'text-base'}`}>"{t.quote}"</p>
+                <p className={`font-medium leading-relaxed text-foreground/90 ${large ? 'text-lg' : 'text-base'}`}>"{t.quote}"</p>
                 <div className="flex items-center gap-3">
                     <div className="w-9 h-9 bg-background rounded-full flex items-center justify-center font-black text-accent text-sm border border-white/10 flex-shrink-0">
                         {t.author.charAt(0)}
                     </div>
-                    <p className="text-xs font-black uppercase tracking-widest text-foreground/55">{t.author}</p>
+                    <p className="text-xs font-black uppercase tracking-widest text-foreground/70">{t.author}</p>
                 </div>
             </div>
         </motion.div>
@@ -36,7 +36,7 @@ export default function TestimonialSection() {
     const heading = (
         <motion.h2
             initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            className="text-[clamp(2rem,6vw,6rem)] font-black uppercase font-heading leading-[1.05]"
+            className="text-[clamp(2.5rem,5vw,5rem)] font-black uppercase font-heading leading-[1.05]"
         >
             What Our <span className="text-accent">Clients Say</span>
         </motion.h2>

@@ -15,7 +15,7 @@ function DesktopServices() {
             <div className="max-w-7xl mx-auto px-6">
                 <motion.h2
                     initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-                    className="text-[clamp(3rem,7vw,7.5rem)] font-black uppercase font-heading leading-none mb-16"
+                    className="text-[clamp(2.5rem,5vw,5.5rem)] font-black uppercase font-heading leading-none mb-12"
                 >
                     What <span className="text-accent">We Do</span>
                 </motion.h2>
@@ -26,13 +26,13 @@ function DesktopServices() {
                             initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6, delay: i * 0.1 }}
                             className="group grid grid-cols-[3rem_1fr_1.4fr_16rem] items-center gap-8 py-12"
                         >
-                            <span className="font-heading text-sm text-accent/70 font-black self-start pt-2">{s.id}</span>
-                            <h3 className="text-3xl xl:text-4xl font-black uppercase font-heading group-hover:text-accent transition-colors duration-400 leading-tight">{s.title}</h3>
+                            <span className="font-heading text-sm text-accent font-black self-start pt-2">{s.id}</span>
+                            <h3 className="text-2xl xl:text-3xl font-black uppercase font-heading group-hover:text-accent transition-colors leading-tight">{s.title}</h3>
                             <div className="space-y-3">
-                                <p className="text-foreground/60 text-base leading-relaxed">{s.desc}</p>
+                                <p className="text-foreground/75 text-base leading-relaxed max-w-sm">{s.desc}</p>
                                 <ul className="flex flex-col gap-1.5">
                                     {s.list.map((l, li) => (
-                                        <li key={li} className="flex items-center gap-2 text-sm text-foreground/40">
+                                        <li key={li} className="flex items-center gap-2 text-sm text-foreground/60">
                                             <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />{l}
                                         </li>
                                     ))}
