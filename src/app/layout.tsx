@@ -20,6 +20,12 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: 'Clypsea | Creative Agency',
   description: 'A multi-service creative agency pushing the boundaries of design, marketing, and development.',
+  themeColor: '#0a0a0a',
+  appleWebApp: {
+    capable: true,
+    title: 'Clypsea',
+    statusBarStyle: 'black-translucent',
+  },
 };
 
 export default function RootLayout({
