@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cGrad" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%"   stop-color="#8BC34A"/>
+      <stop offset="25%"  stop-color="#CDDC39"/>
+      <stop offset="50%"  stop-color="#FF9800"/>
+      <stop offset="75%"  stop-color="#E91E8C"/>
+      <stop offset="100%" stop-color="#9C27B0"/>
+    </linearGradient>
+  </defs>
+  <text
+    x="50" y="78"
+    font-family="Arial Black, sans-serif"
+    font-weight="900"
+    font-size="95"
+    text-anchor="middle"
+    fill="url(#cGrad)"
+  >C</text>
+</svg>
