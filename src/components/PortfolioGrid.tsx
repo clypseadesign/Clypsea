@@ -2,124 +2,156 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { cn } from "@/utils/cn";
+import { useDeviceType } from "@/hooks/useDeviceType";
 
 const projects = [
-    {
-        id: 1,
-        title: 'Aura Branding',
-        category: 'Branding | Web Design | Marketing',
-        desc: 'We crafted a bold visual identity and built a high-performing website designed to convert and scale.',
-        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80',
-        size: 'large'
-    },
-    {
-        id: 2,
-        title: 'Nexus Web',
-        category: 'Web Development | SEO',
-        desc: 'A complete platform overhaul resulting in a 200% increase in user engagement and seamless performance.',
-        image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80',
-        size: 'small'
-    },
-    {
-        id: 3,
-        title: 'Zephyr Campaign',
-        category: 'Digital Marketing | Social',
-        desc: 'A targeted brand awareness campaign that drove exceptional social reach and customer acquisition.',
-        image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80',
-        size: 'medium'
-    },
-    {
-        id: 4,
-        title: 'Nova UI/UX',
-        category: 'App Design | Strategy',
-        desc: 'Intuitive application design focusing on user retention, frictionless onboarding, and modern aesthetics.',
-        image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1200&q=80',
-        size: 'large'
-    },
+    { id: 1, title: 'Aura Branding', category: 'Branding | Web', desc: 'Bold visual identity built to convert and scale.', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80' },
+    { id: 2, title: 'Nexus Web', category: 'Web Dev | SEO', desc: '200% increase in user engagement after overhaul.', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80' },
+    { id: 3, title: 'Zephyr Campaign', category: 'Marketing | Social', desc: 'Brand awareness campaign with exceptional reach.', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80' },
+    { id: 4, title: 'Nova UI/UX', category: 'App Design', desc: 'Frictionless onboarding with modern aesthetics.', image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1200&q=80' },
 ];
 
-export default function PortfolioGrid() {
-    return (
-        <section id="work" className="py-20 md:py-28 lg:py-32 px-5 md:px-10 lg:px-16">
-            <div className="mb-12 md:mb-20 lg:mb-24">
-                <motion.h2
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-[clamp(2.5rem,7vw,8rem)] font-black uppercase font-heading mb-5 md:mb-8"
-                >
-                    Selected <span className="text-accent">Work</span>
-                </motion.h2>
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-base md:text-lg lg:text-xl text-foreground/70 max-w-2xl font-medium"
-                >
-                    <p>Every project is a collaboration.</p>
-                    <p>Here are some of the brands we've helped transform.</p>
-                </motion.div>
-            </div>
+/* ─── DESKTOP: Pinned horizontal scroll ─── */
+function DesktopPortfolio() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
+    // Scroll the track left as user scrolls down the pinned container
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(projects.length - 1) * 100 / projects.length * 1.1}%`]);
 
-            {/* Mobile: single column scroll
-                Tablet: 2-column grid
-                Desktop: complex staggered 12-column layout */}
-            <div className="grid grid-cols-1 gap-12
-                            md:grid-cols-2 md:gap-x-8 md:gap-y-16
-                            lg:grid-cols-12 lg:gap-x-8 lg:gap-y-32">
-                {projects.map((project, index) => (
-                    <ProjectCard key={project.id} project={project} index={index} />
+    return (
+        <section id="work">
+            {/* Tall container to create scroll space */}
+            <div ref={containerRef} style={{ height: `${projects.length * 100}vh` }} className="relative">
+                {/* Sticky viewport */}
+                <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+                    {/* Header */}
+                    <div className="px-16 pt-24 pb-8 flex items-end justify-between flex-shrink-0">
+                        <h2 className="text-[clamp(3rem,6vw,7rem)] font-black uppercase font-heading leading-none">
+                            Selected <span className="text-accent">Work</span>
+                        </h2>
+                        <p className="text-sm text-foreground/40 uppercase tracking-[0.3em] font-bold">→ Scroll to explore</p>
+                    </div>
+                    {/* Horizontal track */}
+                    <div className="flex-1 overflow-hidden flex items-stretch">
+                        <motion.div style={{ x }} className="flex h-full" style={{ x, width: `${projects.length * 85}vw` }}>
+                            {projects.map((project, i) => (
+                                <motion.div
+                                    key={project.id}
+                                    className="relative flex-shrink-0 group cursor-pointer"
+                                    style={{ width: `calc(${projects.length * 85}vw / ${projects.length})`, paddingRight: '2rem', paddingLeft: i === 0 ? '4rem' : '0' }}
+                                    initial={{ opacity: 0, y: 40 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.7, delay: i * 0.1 }}
+                                >
+                                    {/* Image */}
+                                    <div className="relative h-[70%] rounded-2xl overflow-hidden">
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                            style={{ backgroundImage: `url(${project.image})` }}
+                                        />
+                                        {/* Number overlay */}
+                                        <div className="absolute top-6 left-6 text-[6rem] font-black font-heading text-white/5 leading-none select-none">
+                                            {String(i + 1).padStart(2, '0')}
+                                        </div>
+                                        {/* Hover overlay */}
+                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
+                                            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-black uppercase tracking-widest border border-white px-6 py-3 rounded-full">
+                                                View Case
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {/* Info */}
+                                    <div className="mt-6 flex items-start justify-between">
+                                        <div>
+                                            <h3 className="text-2xl font-black font-heading mb-1 group-hover:text-accent transition-colors">{project.title}</h3>
+                                            <p className="text-xs text-accent uppercase tracking-[0.2em] font-bold">{project.category}</p>
+                                        </div>
+                                        <p className="text-sm text-foreground/50 max-w-[180px] text-right leading-relaxed">{project.desc}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ─── TABLET: Clean 2-col grid ─── */
+function TabletPortfolio() {
+    return (
+        <section id="work" className="py-20 px-10">
+            <div className="mb-14">
+                <h2 className="text-[clamp(2.5rem,7vw,5rem)] font-black uppercase font-heading mb-4">
+                    Selected <span className="text-accent">Work</span>
+                </h2>
+                <p className="text-base text-foreground/60 font-medium">Every project is a collaboration.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+                {projects.map((project, i) => (
+                    <motion.div
+                        key={project.id}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: i * 0.1 }}
+                        className="group cursor-pointer"
+                    >
+                        <div className="rounded-xl overflow-hidden aspect-[4/3] relative">
+                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                style={{ backgroundImage: `url(${project.image})` }} />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+                        </div>
+                        <div className="mt-4">
+                            <h3 className="text-xl font-black font-heading group-hover:text-accent transition-colors">{project.title}</h3>
+                            <p className="text-xs text-accent uppercase tracking-widest font-bold mt-1">{project.category}</p>
+                        </div>
+                    </motion.div>
                 ))}
             </div>
         </section>
     );
 }
 
-function ProjectCard({ project, index }: { project: any, index: number }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "end start"],
-    });
-    const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
+/* ─── MOBILE: Single column stacked ─── */
+function MobilePortfolio() {
     return (
-        <div
-            ref={ref}
-            className={cn(
-                "group cursor-pointer flex flex-col gap-4 md:gap-6",
-                // Desktop staggered columns
-                "lg:" + (
-                    project.size === 'large' ? "col-span-8" :
-                        project.size === 'medium' ? "col-span-6 col-start-2" :
-                            "col-span-4 col-start-9 mt-32"
-                )
-            )}
-        >
-            {/* Image: fixed aspect ratio on mobile, taller on desktop */}
-            <div className="overflow-hidden bg-surface relative rounded-xl md:rounded-2xl w-full aspect-[4/3] md:aspect-[4/3] lg:aspect-auto lg:h-[500px] xl:h-[600px]">
-                <motion.div
-                    style={{ y }}
-                    className="absolute inset-[-15%] w-[130%] h-[130%]"
-                >
-                    <div
-                        className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                        style={{ backgroundImage: `url(${project.image})` }}
-                    />
-                </motion.div>
+        <section id="work" className="py-16 px-5">
+            <div className="mb-10">
+                <h2 className="text-[clamp(2.2rem,10vw,4rem)] font-black uppercase font-heading">
+                    Selected <span className="text-accent">Work</span>
+                </h2>
             </div>
-
-            <div className="flex flex-col gap-2 md:gap-3 group-hover:translate-x-2 md:group-hover:translate-x-4 transition-transform duration-500">
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold font-heading">{project.title}</h3>
-                <p className="text-xs md:text-sm tracking-[0.15em] md:tracking-[0.2em] text-accent uppercase font-bold">{project.category}</p>
-                <p className="text-sm md:text-base text-foreground/70 mt-1 md:mt-2">{project.desc}</p>
-                <div className="mt-2 md:mt-4 flex items-center gap-3 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors w-fit pb-1 border-b border-white/20 hover:border-accent">
-                    View Case Study
-                </div>
+            <div className="flex flex-col gap-10">
+                {projects.map((project, i) => (
+                    <motion.div
+                        key={project.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="group"
+                    >
+                        <div className="rounded-xl overflow-hidden w-full aspect-[4/3]">
+                            <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                style={{ backgroundImage: `url(${project.image})` }} />
+                        </div>
+                        <div className="mt-3">
+                            <p className="text-[10px] text-accent uppercase tracking-widest font-bold mb-1">{project.category}</p>
+                            <h3 className="text-xl font-black font-heading">{project.title}</h3>
+                            <p className="text-sm text-foreground/60 mt-1">{project.desc}</p>
+                        </div>
+                    </motion.div>
+                ))}
             </div>
-        </div>
+        </section>
     );
+}
+
+export default function PortfolioGrid() {
+    const device = useDeviceType();
+    if (device === 'desktop') return <DesktopPortfolio />;
+    if (device === 'tablet') return <TabletPortfolio />;
+    return <MobilePortfolio />;
 }

@@ -4,6 +4,7 @@ import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
 import Loader from '@/components/Loader';
+import CustomCursor from '@/components/CustomCursor';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${syne.variable}`}>
       <body className="antialiased">
+        <CustomCursor />
         <Loader />
         <SmoothScroll>
           <Navbar />

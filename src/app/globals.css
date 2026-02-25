@@ -28,7 +28,11 @@
     font-family: var(--font-body), sans-serif;
     overflow-x: hidden;
     line-height: 1.6;
-    /* Optional: custom cursor could go here but we'll keep standard for accessibility unless requested exactly */
+  }
+
+  @media (min-width: 1024px) {
+    body { cursor: none; }
+    a, button, [data-cursor-hover] { cursor: none; }
   }
 
   ::selection {
