@@ -5,128 +5,97 @@ import { useRef } from "react";
 import { useDeviceType } from "@/hooks/useDeviceType";
 
 const projects = [
-    { id: 1, title: 'Aura Branding', category: 'Branding · Web Design', desc: 'Bold visual identity built to convert and scale.', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1400&q=80' },
-    { id: 2, title: 'Nexus Web', category: 'Web Dev · SEO', desc: '200% increase in user engagement post-launch.', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&q=80' },
-    { id: 3, title: 'Zephyr Campaign', category: 'Marketing · Social', desc: 'Brand awareness campaign with exceptional reach.', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1400&q=80' },
-    { id: 4, title: 'Nova UI/UX', category: 'App Design · Strategy', desc: 'Frictionless onboarding with modern aesthetics.', image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1400&q=80' },
+    { id: 1, title: 'Aura Branding', category: 'Branding | Web Design', desc: 'Bold visual identity built to convert and scale.', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80' },
+    { id: 2, title: 'Nexus Web', category: 'Web Dev | SEO', desc: '200% increase in user engagement after overhaul.', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80' },
+    { id: 3, title: 'Zephyr Campaign', category: 'Marketing | Social', desc: 'Brand awareness campaign with exceptional reach.', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80' },
+    { id: 4, title: 'Nova UI/UX', category: 'App Design | Strategy', desc: 'Frictionless onboarding with modern aesthetics.', image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1200&q=80' },
 ];
 
-/* ── DESKTOP: asymmetric bento grid – 2 large + 2 normal ── */
+/* ─── DESKTOP: Pinned horizontal scroll ─── */
 function DesktopPortfolio() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+    // Projects slide left: 0% → -(n-1) × card+gap widths expressed as vw
+    const x = useTransform(scrollYProgress, [0, 1], ["0vw", `-${(projects.length - 1) * 62}vw`]);
+
     return (
-        <section id="work" className="py-24">
-            <div className="px-20">
+        <div ref={sectionRef} id="work" style={{ height: `${projects.length * 100}vh` }}>
+            <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
                 {/* Header */}
-                <div className="mb-14 flex items-end justify-between">
-                    <div>
-                        <p className="text-xs font-black tracking-[0.4em] text-accent uppercase mb-4">Selected Work</p>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
-                            className="text-[clamp(3rem,5vw,5.5rem)] font-black uppercase font-heading leading-none"
-                        >
-                            Our <span className="text-accent">Portfolio</span>
-                        </motion.h2>
-                    </div>
-                    <p className="text-sm text-foreground/60 pb-2">4 featured projects</p>
+                <div className="flex-shrink-0 max-w-7xl mx-auto w-full px-6 pt-20 pb-6 flex items-end justify-between">
+                    <h2 className="text-[clamp(3rem,6vw,6.5rem)] font-black uppercase font-heading leading-none">
+                        Selected <span className="text-accent">Work</span>
+                    </h2>
+                    <p className="text-xs text-foreground/40 uppercase tracking-[0.3em] font-bold pb-2">Scroll to explore →</p>
                 </div>
 
-                {/* Asymmetric grid: row 1 = [large | small], row 2 = [small | large] */}
-                <div className="grid grid-cols-3 gap-6">
-                    {/* Project 1 — large, spans 2 cols */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-                        className="col-span-2 group cursor-pointer"
-                    >
-                        <div className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-surface">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                style={{ backgroundImage: `url(${projects[0].image})` }} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-7">
-                                <p className="text-xs font-black text-accent uppercase tracking-widest mb-2">{projects[0].category}</p>
-                                <h3 className="text-2xl font-black font-heading text-white">{projects[0].title}</h3>
+                {/* Scrolling track — full width, clips at right edge */}
+                <div className="flex-1 overflow-hidden flex items-stretch px-6">
+                    <motion.div style={{ x }} className="flex gap-6 h-full will-change-transform">
+                        {projects.map((project, i) => (
+                            <div
+                                key={project.id}
+                                className="group flex-shrink-0 flex flex-col gap-4"
+                                style={{ width: '58vw' }}
+                            >
+                                {/* Image */}
+                                <div className="relative flex-1 rounded-2xl overflow-hidden bg-surface">
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                        style={{ backgroundImage: `url(${project.image})` }}
+                                    />
+                                    {/* Number */}
+                                    <span className="absolute top-5 left-6 text-[5rem] font-black font-heading text-white/5 leading-none select-none">
+                                        {String(i + 1).padStart(2, '0')}
+                                    </span>
+                                    {/* Hover CTA */}
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400 bg-black/20">
+                                        <span className="text-xs font-black uppercase tracking-widest border border-white px-6 py-3 rounded-full backdrop-blur-sm">
+                                            View Case
+                                        </span>
+                                    </div>
+                                </div>
+                                {/* Info */}
+                                <div className="flex flex-col gap-1 pb-4">
+                                    <h3 className="text-xl font-black font-heading group-hover:text-accent transition-colors">{project.title}</h3>
+                                    <p className="text-xs text-accent uppercase tracking-[0.2em] font-bold">{project.category}</p>
+                                    <p className="text-sm text-foreground/70 leading-relaxed mt-1 max-w-xs">{project.desc}</p>
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Project 2 — single col */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-                        className="group cursor-pointer"
-                    >
-                        <div className="relative rounded-2xl overflow-hidden h-full min-h-[240px] bg-surface">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                style={{ backgroundImage: `url(${projects[1].image})` }} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-6">
-                                <p className="text-[10px] font-black text-accent uppercase tracking-widest mb-1.5">{projects[1].category}</p>
-                                <h3 className="text-lg font-black font-heading text-white">{projects[1].title}</h3>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Project 3 — single col */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}
-                        className="group cursor-pointer"
-                    >
-                        <div className="relative rounded-2xl overflow-hidden h-full min-h-[240px] bg-surface">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                style={{ backgroundImage: `url(${projects[2].image})` }} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-6">
-                                <p className="text-[10px] font-black text-accent uppercase tracking-widest mb-1.5">{projects[2].category}</p>
-                                <h3 className="text-lg font-black font-heading text-white">{projects[2].title}</h3>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Project 4 — large, spans 2 cols */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-                        className="col-span-2 group cursor-pointer"
-                    >
-                        <div className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-surface">
-                            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                style={{ backgroundImage: `url(${projects[3].image})` }} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-7">
-                                <p className="text-xs font-black text-accent uppercase tracking-widest mb-2">{projects[3].category}</p>
-                                <h3 className="text-2xl font-black font-heading text-white">{projects[3].title}</h3>
-                            </div>
-                        </div>
+                        ))}
                     </motion.div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
 
-/* ── TABLET: balanced 2-col grid ── */
+/* ─── TABLET: Clean 2-col grid ─── */
 function TabletPortfolio() {
     return (
         <section id="work" className="py-20">
-            <div className="px-10">
-                <div className="mb-12">
-                    <p className="text-xs font-black tracking-[0.4em] text-accent uppercase mb-3">Selected Work</p>
-                    <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-black uppercase font-heading leading-none">
-                        Our <span className="text-accent">Portfolio</span>
+            <div className="max-w-3xl mx-auto px-8">
+                <div className="mb-12 space-y-3">
+                    <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-black uppercase font-heading">
+                        Selected <span className="text-accent">Work</span>
                     </h2>
+                    <p className="text-base text-foreground/60">Every project is a collaboration.</p>
                 </div>
-                <div className="grid grid-cols-2 gap-5">
-                    {projects.map((p, i) => (
+                <div className="grid grid-cols-2 gap-6">
+                    {projects.map((project, i) => (
                         <motion.div
-                            key={p.id}
-                            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}
-                            className="group"
+                            key={project.id}
+                            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
+                            className="group space-y-3"
                         >
-                            <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-surface">
-                                <div className="w-full absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                    style={{ backgroundImage: `url(${p.image})` }} />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                <div className="absolute bottom-0 left-0 p-5">
-                                    <p className="text-[10px] font-black text-accent uppercase tracking-widest mb-1">{p.category}</p>
-                                    <h3 className="text-lg font-black font-heading text-white">{p.title}</h3>
-                                </div>
+                            <div className="rounded-xl overflow-hidden aspect-[4/3] bg-surface">
+                                <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                    style={{ backgroundImage: `url(${project.image})` }} />
+                            </div>
+                            <div className="space-y-1">
+                                <h3 className="text-lg font-black font-heading group-hover:text-accent transition-colors">{project.title}</h3>
+                                <p className="text-xs text-accent uppercase tracking-widest font-bold">{project.category}</p>
+                                <p className="text-sm text-foreground/55">{project.desc}</p>
                             </div>
                         </motion.div>
                     ))}
@@ -136,32 +105,31 @@ function TabletPortfolio() {
     );
 }
 
-/* ── MOBILE: full-width single column ── */
+/* ─── MOBILE: Single column stacked ─── */
 function MobilePortfolio() {
     return (
         <section id="work" className="py-16">
-            <div className="px-6">
-                <div className="mb-10">
-                    <p className="text-xs font-black tracking-[0.4em] text-accent uppercase mb-3">Selected Work</p>
-                    <h2 className="text-[clamp(2rem,8vw,3rem)] font-black uppercase font-heading leading-none">
-                        Our <span className="text-accent">Portfolio</span>
+            <div className="max-w-lg mx-auto px-6">
+                <div className="mb-10 space-y-2">
+                    <h2 className="text-[clamp(2rem,9vw,3.5rem)] font-black uppercase font-heading">
+                        Selected <span className="text-accent">Work</span>
                     </h2>
                 </div>
-                <div className="flex flex-col gap-5">
-                    {projects.map((p, i) => (
+                <div className="flex flex-col divide-y divide-white/8">
+                    {projects.map((project, i) => (
                         <motion.div
-                            key={p.id}
-                            initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}
-                            className="group"
+                            key={project.id}
+                            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}
+                            className="py-8 space-y-3"
                         >
-                            <div className="relative rounded-xl overflow-hidden w-full aspect-[4/3] bg-surface">
-                                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-103"
-                                    style={{ backgroundImage: `url(${p.image})` }} />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                <div className="absolute bottom-0 left-0 p-5">
-                                    <p className="text-[10px] font-black text-accent uppercase tracking-widest mb-1">{p.category}</p>
-                                    <h3 className="text-base font-black font-heading text-white">{p.title}</h3>
-                                </div>
+                            <div className="rounded-xl overflow-hidden w-full aspect-[4/3] bg-surface">
+                                <div className="w-full h-full bg-cover bg-center"
+                                    style={{ backgroundImage: `url(${project.image})` }} />
+                            </div>
+                            <div className="space-y-1">
+                                <p className="text-[10px] text-accent uppercase tracking-widest font-bold">{project.category}</p>
+                                <h3 className="text-xl font-black font-heading">{project.title}</h3>
+                                <p className="text-sm text-foreground/60">{project.desc}</p>
                             </div>
                         </motion.div>
                     ))}
