@@ -204,7 +204,6 @@ export default function ContactSection() {
                     </div>
                 </motion.footer>
             </div>
-        </div>
-        </section >
+        </section>
     );
 }
