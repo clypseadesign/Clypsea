@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
+export const runtime = 'nodejs';
+
 export async function POST(req: Request) {
     try {
         // Initialize the Resend client inside the handler so it doesn't crash the Next.js static build step
