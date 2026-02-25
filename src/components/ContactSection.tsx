@@ -50,8 +50,8 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="contact" className="py-32 px-6 md:px-12 min-h-screen flex flex-col justify-center">
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-24">
+        <section id="contact" className="py-20 md:py-28 lg:py-32 px-5 md:px-10 lg:px-16 min-h-screen flex flex-col justify-center">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-14 md:gap-20 lg:gap-24">
 
                 <div>
                     <motion.div
@@ -60,10 +60,10 @@ export default function ContactSection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-[clamp(2.5rem,5vw,5rem)] leading-tight font-black uppercase font-heading mb-6 break-words">
+                        <h2 className="text-[clamp(2.2rem,5vw,5rem)] leading-tight font-black uppercase font-heading mb-4 md:mb-6 break-words">
                             Start the<br />Conversation
                         </h2>
-                        <p className="text-xl text-foreground/70 max-w-sm mb-16">
+                        <p className="text-base md:text-xl text-foreground/70 max-w-sm mb-10 md:mb-16">
                             Ready to push the boundaries? Reach out to us.
                         </p>
                     </motion.div>
@@ -73,9 +73,9 @@ export default function ContactSection() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="flex flex-col gap-4 font-heading text-2xl font-bold"
+                        className="flex flex-col gap-3 md:gap-4 font-heading text-lg md:text-2xl font-bold"
                     >
-                        <a href="mailto:clypse.design.agency@gmail.com" className="hover:text-accent transition-colors w-fit">clypse.design.agency@gmail.com</a>
+                        <a href="mailto:clypse.design.agency@gmail.com" className="hover:text-accent transition-colors w-fit break-all text-base md:text-xl lg:text-2xl">clypse.design.agency@gmail.com</a>
                         <a href="tel:+916382354705" className="hover:text-accent transition-colors w-fit">+91 6382354705</a>
                     </motion.div>
                 </div>
