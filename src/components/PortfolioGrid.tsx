@@ -33,7 +33,7 @@ function DesktopPortfolio() {
                     </div>
                     {/* Horizontal track */}
                     <div className="flex-1 overflow-hidden flex items-stretch">
-                        <motion.div style={{ x }} className="flex h-full" style={{ x, width: `${projects.length * 85}vw` }}>
+                        <motion.div style={{ x, width: `${projects.length * 85}vw` }} className="flex h-full">
                             {projects.map((project, i) => (
                                 <motion.div
                                     key={project.id}
