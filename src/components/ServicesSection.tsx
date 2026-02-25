@@ -39,7 +39,7 @@ export default function ServicesSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-black uppercase font-heading"
+                    className="text-[clamp(2.5rem,7vw,8rem)] font-black uppercase font-heading"
                 >
                     What <span className="text-accent">We Do</span>
                 </motion.h2>

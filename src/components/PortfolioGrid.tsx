@@ -48,7 +48,7 @@ export default function PortfolioGrid() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-black uppercase font-heading mb-8"
+                    className="text-[clamp(2.5rem,7vw,8rem)] font-black uppercase font-heading mb-8"
                 >
                     Selected <span className="text-accent">Work</span>
                 </motion.h2>
