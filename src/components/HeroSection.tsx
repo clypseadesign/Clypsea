@@ -24,19 +24,44 @@ export default function HeroSection() {
 
     /* ─── DESKTOP ─── */
     if (device === 'desktop') return (
-        <section ref={containerRef} className="relative min-h-screen overflow-hidden w-full px-[5vw] pt-44 pb-28 flex flex-col justify-end">
+        <section ref={containerRef} className="relative min-h-screen overflow-hidden w-full px-[5vw] pt-36 pb-36 flex flex-col justify-end">
             {/* Background blobs */}
             <motion.div style={{ y: bgY, opacity: bgOpacity }} className="absolute inset-0 pointer-events-none z-0">
                 <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-accent/8 rounded-full blur-[130px]" />
                 <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#a920c8]/8 rounded-full blur-[130px]" />
             </motion.div>
 
+            {/* Right-side animated visual */}
+            <div className="absolute right-[5vw] top-1/2 -translate-y-1/2 pointer-events-none z-0 flex flex-col items-center gap-6">
+                <motion.div
+                    animate={{ y: [0, -24, 0], scale: [1, 1.04, 1] }}
+                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-[28vw] h-[28vw] max-w-[420px] max-h-[420px] rounded-full bg-gradient-to-br from-accent/15 via-[#fa2472]/10 to-[#7a15df]/15 blur-[60px]"
+                />
+                <motion.div
+                    animate={{ y: [0, 18, 0], scale: [1, 0.96, 1] }}
+                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="w-[12vw] h-[12vw] max-w-[180px] max-h-[180px] rounded-full bg-gradient-to-tr from-[#b6e949]/10 to-[#fa2472]/10 blur-[40px] -mt-[8vw]"
+                />
+                {/* Floating ring accent */}
+                <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                    className="absolute w-[22vw] h-[22vw] max-w-[340px] max-h-[340px] rounded-full border border-white/5"
+                />
+                <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute w-[16vw] h-[16vw] max-w-[240px] max-h-[240px] rounded-full border border-accent/8"
+                />
+            </div>
+
             {/* Content */}
             <motion.div variants={anim.container} initial="hidden" animate="show" className="relative z-10">
-                <motion.p variants={anim.item} className="text-xs tracking-[0.4em] text-accent uppercase font-bold mb-8">
+                <motion.p variants={anim.item} className="text-xs tracking-[0.2em] text-accent uppercase font-bold mb-8">
                     Clypsea — Creative Digital Studio
                 </motion.p>
-                <h1 className="text-[clamp(3.5rem,6.5vw,7.5rem)] leading-[0.92] font-black tracking-tight uppercase font-heading mb-0">
+                <h1 className="text-[8vw] leading-[0.9] font-black tracking-tight uppercase font-heading mb-0 max-w-[90%]">
                     <motion.span variants={anim.item} className="block">We Create Digital</motion.span>
                     <motion.span variants={anim.item} className="block bg-gradient-to-r from-[#b6e949] via-[#fa2472] to-[#7a15df] bg-clip-text text-transparent pb-2">
                         Experiences
@@ -47,10 +72,10 @@ export default function HeroSection() {
                     Blending design, marketing, and technology to build brands that stand out and scale fast.
                 </motion.p>
                 <motion.div variants={anim.item} className="mt-10 flex gap-6">
-                    <a href="#work" data-cursor-hover className="text-xs tracking-[0.25em] uppercase font-black bg-foreground text-background px-8 py-4 rounded-full hover:bg-accent transition-colors duration-300">
+                    <a href="#work" data-cursor-hover className="text-xs tracking-[0.2em] uppercase font-black bg-foreground text-background px-8 py-4 rounded-full hover:bg-accent transition-colors duration-300">
                         View Work
                     </a>
-                    <a href="#contact" data-cursor-hover className="text-xs tracking-[0.25em] uppercase font-black border border-white/20 px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
+                    <a href="#contact" data-cursor-hover className="text-xs tracking-[0.2em] uppercase font-black border border-white/20 px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
                         Start Project
                     </a>
                 </motion.div>

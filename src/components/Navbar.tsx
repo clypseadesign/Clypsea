@@ -60,10 +60,10 @@ export default function Navbar() {
                     ))}
                     <Link
                         href="#contact"
-                        className="relative px-8 py-3 rounded-full border border-accent text-accent overflow-hidden group"
+                        className="relative px-7 py-2.5 rounded-full border border-accent text-accent text-xs font-black tracking-widest uppercase overflow-hidden group shadow-[0_0_16px_rgba(182,233,73,0.2)] hover:shadow-[0_0_24px_rgba(182,233,73,0.45)] transition-all duration-300"
                     >
                         <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Let's Talk</span>
-                        <div className="absolute inset-0 bg-accent transition-transform duration-300 translate-y-full group-hover:translate-y-0" />
+                        <div className="absolute inset-0 bg-accent transition-transform duration-300 translate-y-full group-hover:translate-y-0 rounded-full" />
                     </Link>
                 </div>
 
