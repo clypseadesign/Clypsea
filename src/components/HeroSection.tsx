@@ -36,12 +36,12 @@ export default function HeroSection() {
                 <motion.p variants={anim.item} className="text-xs tracking-[0.4em] text-accent uppercase font-bold mb-8">
                     Clypsea — Creative Digital Studio
                 </motion.p>
-                <h1 className="max-w-6xl text-[clamp(4rem,8vw,8.5rem)] leading-[0.92] font-black tracking-tight uppercase font-heading mb-0">
+                <h1 className="text-[clamp(3.5rem,6.5vw,7.5rem)] leading-[0.92] font-black tracking-tight uppercase font-heading mb-0">
                     <motion.span variants={anim.item} className="block">We Create Digital</motion.span>
                     <motion.span variants={anim.item} className="block bg-gradient-to-r from-[#b6e949] via-[#fa2472] to-[#7a15df] bg-clip-text text-transparent pb-2">
-                        Experiences That
+                        Experiences
                     </motion.span>
-                    <motion.span variants={anim.item} className="block">Move.</motion.span>
+                    <motion.span variants={anim.item} className="block">That Move.</motion.span>
                 </h1>
                 <motion.p variants={anim.item} className="max-w-2xl text-lg text-foreground/75 leading-relaxed mt-8">
                     Blending design, marketing, and technology to build brands that stand out and scale fast.
