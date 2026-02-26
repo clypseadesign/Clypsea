@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Outfit, Syne } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -18,10 +18,13 @@ const syne = Syne({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+};
+
 export const metadata: Metadata = {
   title: 'Clypsea | Creative Agency',
   description: 'A multi-service creative agency pushing the boundaries of design, marketing, and development.',
-  themeColor: '#0a0a0a',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
