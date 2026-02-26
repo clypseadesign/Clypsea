@@ -24,72 +24,72 @@ export default function HeroSection() {
 
     /* ─── DESKTOP ─── */
     if (device === 'desktop') return (
-        <section ref={containerRef} className="relative min-h-screen overflow-hidden w-full px-[5vw] pt-40 pb-24 flex flex-col justify-end">
+        <section ref={containerRef} className="relative min-h-screen overflow-hidden w-full px-[5vw] pt-40 pb-24 flex items-end">
             {/* Background blobs */}
             <motion.div style={{ y: bgY, opacity: bgOpacity }} className="absolute inset-0 pointer-events-none z-0">
-                <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-accent/8 rounded-full blur-[130px]" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#a920c8]/8 rounded-full blur-[130px]" />
+                <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-accent/6 rounded-full blur-[140px]" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#a920c8]/6 rounded-full blur-[130px]" />
             </motion.div>
 
-            {/* Right-side animated visual */}
-            <div className="absolute right-[5vw] top-1/2 -translate-y-1/2 pointer-events-none z-0 flex flex-col items-center gap-6">
-                <motion.div
-                    animate={{ y: [0, -24, 0], scale: [1, 1.04, 1] }}
-                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-[28vw] h-[28vw] max-w-[420px] max-h-[420px] rounded-full bg-gradient-to-br from-accent/15 via-[#fa2472]/10 to-[#7a15df]/15 blur-[60px]"
-                />
-                <motion.div
-                    animate={{ y: [0, 18, 0], scale: [1, 0.96, 1] }}
-                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="w-[12vw] h-[12vw] max-w-[180px] max-h-[180px] rounded-full bg-gradient-to-tr from-[#b6e949]/10 to-[#fa2472]/10 blur-[40px] -mt-[8vw]"
-                />
-                {/* Floating ring accent */}
-                <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    className="absolute w-[22vw] h-[22vw] max-w-[340px] max-h-[340px] rounded-full border border-white/5"
-                />
-                <motion.div
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute w-[16vw] h-[16vw] max-w-[240px] max-h-[240px] rounded-full border border-accent/8"
-                />
-            </div>
+            {/* Two-column layout: text LEFT, visual RIGHT */}
+            <div className="relative z-10 w-full grid grid-cols-[55fr_45fr] gap-12 items-end">
 
-            {/* Content */}
-            <motion.div variants={anim.container} initial="hidden" animate="show" className="relative z-10">
-                <motion.p variants={anim.item} className="text-xs tracking-[0.25em] text-lime-400 uppercase font-bold mb-6">
-                    Clypsea — Creative Digital Studio
-                </motion.p>
-                <h1 className="text-[7.5vw] leading-[0.92] font-extrabold tracking-tight uppercase font-heading mb-0 max-w-[90%]">
-                    <motion.span variants={anim.item} className="block">We Create Digital</motion.span>
-                    <motion.span variants={anim.item} className="block bg-gradient-to-r from-[#b6e949] via-[#fa2472] to-[#7a15df] bg-clip-text text-transparent pb-2">
-                        Experiences
-                    </motion.span>
-                    <motion.span variants={anim.item} className="block">That Move People.</motion.span>
-                </h1>
-                <motion.p variants={anim.item} className="max-w-xl text-lg text-white/70 leading-relaxed mt-8">
-                    Blending design, marketing, and technology to build brands that stand out and scale fast.
-                </motion.p>
-                <motion.p
-                    variants={anim.item}
-                    className="mt-4 text-xs tracking-[0.3em] uppercase text-white/35 font-semibold"
-                >
-                    Design. Strategy. Growth. Technology.
-                </motion.p>
-                <motion.div variants={anim.item} className="mt-10 flex gap-6">
-                    <a href="#work" data-cursor-hover className="text-xs tracking-[0.2em] uppercase font-black bg-foreground text-background px-8 py-4 rounded-full hover:bg-accent transition-colors duration-300">
-                        View Work
-                    </a>
-                    <a href="#contact" data-cursor-hover className="text-xs tracking-[0.2em] uppercase font-black border border-white/20 px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
-                        Start Project
-                    </a>
+                {/* ── LEFT: Text Content ── */}
+                <motion.div variants={anim.container} initial="hidden" animate="show">
+                    <motion.p variants={anim.item} className="text-xs tracking-[0.25em] text-lime-400 uppercase font-bold mb-6">
+                        Clypsea — Creative Digital Studio
+                    </motion.p>
+                    <h1 className="text-[clamp(2.8rem,4vw,5rem)] leading-[1.05] font-extrabold tracking-tight uppercase font-heading mb-0">
+                        <motion.span variants={anim.item} className="block">We Create Digital</motion.span>
+                        <motion.span variants={anim.item} className="block bg-gradient-to-r from-[#b6e949] via-[#fa2472] to-[#7a15df] bg-clip-text text-transparent pb-2">
+                            Experiences
+                        </motion.span>
+                        <motion.span variants={anim.item} className="block">That Move People.</motion.span>
+                    </h1>
+                    <motion.p variants={anim.item} className="max-w-xl text-base text-white/70 leading-relaxed mt-6">
+                        Blending design, marketing, and technology to build brands that stand out and scale fast.
+                    </motion.p>
+                    <motion.p variants={anim.item} className="mt-3 text-xs tracking-[0.3em] uppercase text-white/35 font-semibold">
+                        Design. Strategy. Growth. Technology.
+                    </motion.p>
+                    <motion.div variants={anim.item} className="mt-8 flex gap-5">
+                        <a href="#work" data-cursor-hover className="text-xs tracking-[0.2em] uppercase font-black bg-foreground text-background px-7 py-3.5 rounded-full hover:bg-accent transition-colors duration-300">
+                            View Work
+                        </a>
+                        <a href="#contact" data-cursor-hover className="text-xs tracking-[0.2em] uppercase font-black border border-white/20 px-7 py-3.5 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
+                            Start Project
+                        </a>
+                    </motion.div>
                 </motion.div>
-            </motion.div>
+
+                {/* ── RIGHT: Animated Visual ── */}
+                <div className="flex items-center justify-center relative h-[50vh] pointer-events-none">
+                    <motion.div
+                        animate={{ y: [0, -20, 0], scale: [1, 1.05, 1] }}
+                        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute w-[70%] h-[70%] rounded-full bg-gradient-to-br from-accent/20 via-[#fa2472]/12 to-[#7a15df]/18 blur-[70px]"
+                    />
+                    <motion.div
+                        animate={{ y: [0, 16, 0], scale: [1, 0.95, 1] }}
+                        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                        className="absolute w-[40%] h-[40%] rounded-full bg-gradient-to-tr from-[#b6e949]/12 to-[#fa2472]/10 blur-[50px] translate-y-[20%]"
+                    />
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-[55%] h-[55%] rounded-full border border-white/6"
+                    />
+                    <motion.div
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-[38%] h-[38%] rounded-full border border-accent/10"
+                    />
+                </div>
+            </div>
 
             {/* Decorative watermark */}
             <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 0.05 }} transition={{ delay: 3, duration: 1.5 }}
+                initial={{ opacity: 0 }} animate={{ opacity: 0.04 }} transition={{ delay: 3, duration: 1.5 }}
                 aria-hidden className="absolute bottom-0 right-0 text-[30vw] font-black font-heading leading-none select-none pointer-events-none text-foreground"
             >C</motion.div>
         </section>
