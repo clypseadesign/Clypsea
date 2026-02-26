@@ -58,8 +58,8 @@ export default function HeroSection() {
 
             {/* Decorative watermark */}
             <motion.div
-                initial={{ opacity: 0 }} animate={{ opacity: 0.03 }} transition={{ delay: 3, duration: 1.5 }}
-                aria-hidden className="absolute bottom-0 right-0 text-[28vw] font-black font-heading leading-none select-none pointer-events-none text-foreground translate-y-[15%]"
+                initial={{ opacity: 0 }} animate={{ opacity: 0.05 }} transition={{ delay: 3, duration: 1.5 }}
+                aria-hidden className="absolute bottom-0 right-0 text-[30vw] font-black font-heading leading-none select-none pointer-events-none text-foreground"
             >C</motion.div>
         </section>
     );
