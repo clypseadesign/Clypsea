@@ -24,7 +24,7 @@ export default function HeroSection() {
 
     /* ─── DESKTOP ─── */
     if (device === 'desktop') return (
-        <section ref={containerRef} className="relative min-h-screen overflow-hidden w-full px-[5vw] pt-36 pb-36 flex flex-col justify-end">
+        <section ref={containerRef} className="relative min-h-screen overflow-hidden w-full px-[5vw] pt-40 pb-24 flex flex-col justify-end">
             {/* Background blobs */}
             <motion.div style={{ y: bgY, opacity: bgOpacity }} className="absolute inset-0 pointer-events-none z-0">
                 <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-accent/8 rounded-full blur-[130px]" />
@@ -58,18 +58,24 @@ export default function HeroSection() {
 
             {/* Content */}
             <motion.div variants={anim.container} initial="hidden" animate="show" className="relative z-10">
-                <motion.p variants={anim.item} className="text-xs tracking-[0.2em] text-accent uppercase font-bold mb-8">
+                <motion.p variants={anim.item} className="text-xs tracking-[0.25em] text-lime-400 uppercase font-bold mb-6">
                     Clypsea — Creative Digital Studio
                 </motion.p>
-                <h1 className="text-[8vw] leading-[0.9] font-black tracking-tight uppercase font-heading mb-0 max-w-[90%]">
+                <h1 className="text-[7.5vw] leading-[0.92] font-extrabold tracking-tight uppercase font-heading mb-0 max-w-[90%]">
                     <motion.span variants={anim.item} className="block">We Create Digital</motion.span>
                     <motion.span variants={anim.item} className="block bg-gradient-to-r from-[#b6e949] via-[#fa2472] to-[#7a15df] bg-clip-text text-transparent pb-2">
                         Experiences
                     </motion.span>
-                    <motion.span variants={anim.item} className="block">That Move.</motion.span>
+                    <motion.span variants={anim.item} className="block">That Move People.</motion.span>
                 </h1>
-                <motion.p variants={anim.item} className="max-w-2xl text-lg text-foreground/75 leading-relaxed mt-8">
+                <motion.p variants={anim.item} className="max-w-xl text-lg text-white/70 leading-relaxed mt-8">
                     Blending design, marketing, and technology to build brands that stand out and scale fast.
+                </motion.p>
+                <motion.p
+                    variants={anim.item}
+                    className="mt-4 text-xs tracking-[0.3em] uppercase text-white/35 font-semibold"
+                >
+                    Design. Strategy. Growth. Technology.
                 </motion.p>
                 <motion.div variants={anim.item} className="mt-10 flex gap-6">
                     <a href="#work" data-cursor-hover className="text-xs tracking-[0.2em] uppercase font-black bg-foreground text-background px-8 py-4 rounded-full hover:bg-accent transition-colors duration-300">
