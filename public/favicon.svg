@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g" x1="256" y1="26" x2="256" y2="486" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#86cf3c"/>
+      <stop offset="28%"  stop-color="#c8b820"/>
+      <stop offset="52%"  stop-color="#f07020"/>
+      <stop offset="74%"  stop-color="#e82272"/>
+      <stop offset="100%" stop-color="#8020d8"/>
+    </linearGradient>
+  </defs>
+  <!-- C shape: outer arc (R=230) clockwise from top-right to bottom-right, inner arc (R=145) counterclockwise back -->
+  <path
+    d="M 432.2 108.1
+       A 230 230 0 1 1 432.2 403.9
+       L 367.1 349.2
+       A 145 145 0 1 0 367.1 162.8
+       Z"
+    fill="url(#g)"
+  />
+</svg>
