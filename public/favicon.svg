@@ -1,28 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Dark rounded square background (like an app icon) -->
-  <rect width="512" height="512" rx="110" fill="#0a0a0a"/>
+  <!-- Dark rounded square background -->
+  <rect width="512" height="512" rx="100" fill="#0d0d0d"/>
+
   <defs>
-    <linearGradient id="g" x1="256" y1="60" x2="256" y2="452" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#86cf3c"/>
-      <stop offset="28%"  stop-color="#c8b820"/>
-      <stop offset="52%"  stop-color="#f07020"/>
-      <stop offset="74%"  stop-color="#e82272"/>
-      <stop offset="100%" stop-color="#8020d8"/>
+    <linearGradient id="g" x1="256" y1="50" x2="256" y2="462" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#90d840"/>
+      <stop offset="30%"  stop-color="#d4a010"/>
+      <stop offset="55%"  stop-color="#f06010"/>
+      <stop offset="78%"  stop-color="#e81868"/>
+      <stop offset="100%" stop-color="#8818d8"/>
     </linearGradient>
   </defs>
+
   <!--
-    C shape scaled to 80% of original (outer R=184, inner R=116, center=256,256)
-    Gap angle ±40° from horizontal right
-    Outer top-right:    (397, 138)
-    Outer bottom-right: (397, 374)
-    Inner top-right:    (345, 182)
-    Inner bottom-right: (345, 330)
+    Ultra-thick C for maximum legibility at 16px tab size:
+    Outer radius = 210, Inner radius = 70  →  thickness = 140px (very bold)
+    Gap angle ±48° from horizontal right
+    cos(48°) = 0.6691   sin(48°) = 0.7431
+
+    Outer top-right:    256 + 210×0.6691 = 396.5  ,  256 − 210×0.7431 = 100.0
+    Outer bottom-right: 396.5                       ,  256 + 210×0.7431 = 412.1
+    Inner top-right:    256 +  70×0.6691 = 302.8  ,  256 −  70×0.7431 = 203.9
+    Inner bottom-right: 302.8                       ,  256 +  70×0.7431 = 308.0
   -->
   <path
-    d="M 397 138
-       A 184 184 0 1 1 397 374
-       L 345 330
-       A 116 116 0 1 0 345 182
+    d="M 396.5 100.0
+       A 210 210 0 1 1 396.5 412.1
+       L 302.8 308.0
+       A  70  70 0 1 0 302.8 203.9
        Z"
     fill="url(#g)"
   />
