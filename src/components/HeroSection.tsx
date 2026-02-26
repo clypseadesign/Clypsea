@@ -62,10 +62,10 @@ export default function HeroSection() {
                     </motion.p>
 
                     <motion.div variants={anim.item} className="mt-8 flex gap-4">
-                        <a href="#work" className="text-[10px] tracking-[0.2em] uppercase font-black bg-foreground text-background px-7 py-3.5 rounded-full hover:bg-accent transition-colors duration-300">
+                        <a href="#work" className="text-xs tracking-[0.2em] uppercase font-black bg-foreground text-background px-10 py-4 rounded-full hover:bg-accent transition-colors duration-300">
                             View Work
                         </a>
-                        <a href="#contact" className="text-[10px] tracking-[0.2em] uppercase font-black border border-white/20 px-7 py-3.5 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
+                        <a href="#contact" className="text-xs tracking-[0.2em] uppercase font-black border border-white/20 px-10 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-300">
                             Start Project
                         </a>
                     </motion.div>
@@ -133,10 +133,10 @@ export default function HeroSection() {
                 </motion.p>
 
                 <motion.div variants={anim.item} className="mt-8 flex gap-4">
-                    <a href="#work" className="text-[10px] tracking-[0.2em] uppercase font-black bg-foreground text-background px-6 py-3 rounded-full hover:bg-accent transition-colors">
+                    <a href="#work" className="text-xs tracking-[0.2em] uppercase font-black bg-foreground text-background px-9 py-4 rounded-full hover:bg-accent transition-colors">
                         View Work
                     </a>
-                    <a href="#contact" className="text-[10px] tracking-[0.2em] uppercase font-black border border-white/20 px-6 py-3 rounded-full hover:border-accent hover:text-accent transition-all">
+                    <a href="#contact" className="text-xs tracking-[0.2em] uppercase font-black border border-white/20 px-9 py-4 rounded-full hover:border-accent hover:text-accent transition-all">
                         Start Project
                     </a>
                 </motion.div>
@@ -175,10 +175,10 @@ export default function HeroSection() {
                 </motion.p>
 
                 <motion.div variants={anim.item} className="mt-7 flex flex-col gap-3">
-                    <a href="#work" className="text-[10px] tracking-[0.2em] uppercase font-black bg-foreground text-background px-6 py-3.5 rounded-full hover:bg-accent transition-colors text-center">
+                    <a href="#work" className="text-xs tracking-[0.2em] uppercase font-black bg-foreground text-background px-8 py-4 rounded-full hover:bg-accent transition-colors text-center">
                         View Work
                     </a>
-                    <a href="#contact" className="text-[10px] tracking-[0.2em] uppercase font-black border border-white/20 px-6 py-3.5 rounded-full hover:border-accent hover:text-accent transition-all text-center">
+                    <a href="#contact" className="text-xs tracking-[0.2em] uppercase font-black border border-white/20 px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all text-center">
                         Start Project
                     </a>
                 </motion.div>
