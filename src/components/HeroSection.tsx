@@ -47,7 +47,7 @@ export default function HeroSection() {
                         Clypsea — Creative Digital Studio
                     </motion.p>
 
-                    <h1 className="text-[clamp(3rem,4.5vw,5.5rem)] leading-[1.05] font-extrabold tracking-tight uppercase font-heading">
+                    <h1 className="text-[clamp(2.5rem,5vw,5.5rem)] leading-[1.05] font-extrabold tracking-tight uppercase font-heading">
                         <motion.span variants={anim.item} className="block">We Create Digital</motion.span>
                         <motion.span variants={anim.item} className={`block pb-1 ${gradient}`}>Experiences</motion.span>
                         <motion.span variants={anim.item} className="block">That Move People.</motion.span>
@@ -122,7 +122,7 @@ export default function HeroSection() {
                     Clypsea — Creative Digital Studio
                 </motion.p>
 
-                <h1 className="text-[clamp(2.4rem,5vw,4rem)] leading-[1.05] font-extrabold tracking-tight uppercase font-heading">
+                <h1 className="text-[clamp(2.2rem,4.5vw,4rem)] leading-[1.05] font-extrabold tracking-tight uppercase font-heading">
                     <motion.span variants={anim.item} className="block">We Create Digital</motion.span>
                     <motion.span variants={anim.item} className={`block pb-1 ${gradient}`}>Experiences</motion.span>
                     <motion.span variants={anim.item} className="block">That Move People.</motion.span>
