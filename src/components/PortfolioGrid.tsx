@@ -4,11 +4,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useDeviceType } from "@/hooks/useDeviceType";
 
+import Link from "next/link";
+
 const projects = [
-    { id: 1, title: 'Aura Branding', category: 'Branding | Web Design', desc: 'Bold visual identity built to convert and scale.', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80' },
-    { id: 2, title: 'Nexus Web', category: 'Web Dev | SEO', desc: '200% increase in user engagement after overhaul.', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80' },
-    { id: 3, title: 'Zephyr Campaign', category: 'Marketing | Social', desc: 'Brand awareness campaign with exceptional reach.', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80' },
-    { id: 4, title: 'Nova UI/UX', category: 'App Design | Strategy', desc: 'Frictionless onboarding with modern aesthetics.', image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1200&q=80' },
+    { id: 1, title: 'Digital Marketing', category: 'Marketing', desc: 'Bold visual identity built to convert and scale.', href: '/cases/aura-marketing', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80' },
+    { id: 2, title: 'Nexus Web', category: 'Web Dev | SEO', desc: '200% increase in user engagement after overhaul.', href: '#', image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80' },
+    { id: 3, title: 'Zephyr Campaign', category: 'Marketing | Social', desc: 'Brand awareness campaign with exceptional reach.', href: '#', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80' },
+    { id: 4, title: 'Nova UI/UX', category: 'App Design | Strategy', desc: 'Frictionless onboarding with modern aesthetics.', href: '#', image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1200&q=80' },
 ];
 
 /* ─── DESKTOP: Pinned horizontal scroll ─── */
@@ -33,7 +35,7 @@ function DesktopPortfolio() {
                     <motion.div style={{ x }} className="flex gap-6 h-full will-change-transform">
                         {projects.map((project, i) => (
                             <div key={project.id} className="group flex-shrink-0 flex flex-col gap-4" style={{ width: '58vw' }}>
-                                <div className="relative flex-1 rounded-2xl overflow-hidden bg-surface">
+                                <Link href={project.href} className="relative flex-1 rounded-2xl overflow-hidden bg-surface block">
                                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                         style={{ backgroundImage: `url(${project.image})` }} />
                                     <span className="absolute top-5 left-6 text-[5rem] font-black font-heading text-white/5 leading-none select-none">
@@ -42,7 +44,7 @@ function DesktopPortfolio() {
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400 bg-black/20">
                                         <span className="text-xs font-black uppercase tracking-widest border border-white px-6 py-3 rounded-full backdrop-blur-sm">View Case</span>
                                     </div>
-                                </div>
+                                </Link>
                                 <div className="flex flex-col gap-1 pb-4">
                                     <h3 className="text-xl font-black font-heading group-hover:text-accent transition-colors">{project.title}</h3>
                                     <p className="text-xs text-accent uppercase tracking-[0.2em] font-bold">{project.category}</p>
@@ -74,10 +76,10 @@ function TabletPortfolio() {
                         initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
                         className="group space-y-3"
                     >
-                        <div className="rounded-xl overflow-hidden aspect-[4/3] bg-surface">
+                        <Link href={project.href} className="rounded-xl overflow-hidden aspect-[4/3] bg-surface block">
                             <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                 style={{ backgroundImage: `url(${project.image})` }} />
-                        </div>
+                        </Link>
                         <div className="space-y-1">
                             <h3 className="text-lg font-black font-heading group-hover:text-accent transition-colors">{project.title}</h3>
                             <p className="text-xs text-accent uppercase tracking-widest font-bold">{project.category}</p>
@@ -106,9 +108,9 @@ function MobilePortfolio() {
                         initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}
                         className="py-8 space-y-3"
                     >
-                        <div className="rounded-xl overflow-hidden w-full aspect-[4/3] bg-surface">
+                        <Link href={project.href} className="rounded-xl overflow-hidden w-full aspect-[4/3] bg-surface block">
                             <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${project.image})` }} />
-                        </div>
+                        </Link>
                         <div className="space-y-1">
                             <p className="text-[10px] text-accent uppercase tracking-widest font-bold">{project.category}</p>
                             <h3 className="text-xl font-black font-heading">{project.title}</h3>
