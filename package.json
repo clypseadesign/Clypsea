@@ -4,8 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build:next": "next build",
-        "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" opennextjs-cloudflare build",
+        "build": "next build && cross-env NODE_OPTIONS=\"--max-old-space-size=2048\" opennextjs-cloudflare build --skipBuild",
         "deploy": "npm run build && wrangler deploy",
         "start": "next start",
         "preview": "npm run build && wrangler dev",
