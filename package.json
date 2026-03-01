@@ -4,10 +4,11 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
+        "build:next": "next build",
         "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" opennextjs-cloudflare build",
-        "deploy": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" opennextjs-cloudflare build && wrangler deploy",
+        "deploy": "npm run build && wrangler deploy",
         "start": "next start",
-        "preview": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" opennextjs-cloudflare build && wrangler dev",
+        "preview": "npm run build && wrangler dev",
         "lint": "eslint"
     },
     "dependencies": {
